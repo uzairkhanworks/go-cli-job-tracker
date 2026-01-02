@@ -78,12 +78,12 @@ func listCmd() *cobra.Command {
 				return err
 			}
 			w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-			fmt.Fprint(w, "ID\tROLE\tCOMPANY\tCREATED\tAPPLIED")
+			fmt.Fprintln(w, "ID\tROLE\tCOMPANY\tCREATED\tAPPLIED")
 			for _, job := range jobs {
 				if !showAll && job.Applied {
 					continue
 				}
-				fmt.Fprintln(w, "%d\t%s\t%s\t%s\t%v\n",
+				fmt.Fprintf(w, "%d\t%s\t%s\t%s\t%v\n",
 					job.ID,
 					job.Role,
 					job.Company,
